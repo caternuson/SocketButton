@@ -28,9 +28,9 @@ public class SocketButtonActivity extends Activity implements DialogInterface.On
 	private int luanchedDialog;	
 	private Button buttonPressed;
 	
-	//--------------------------------------------------------------------
-	//--------------------------------------------------------------------	
+	//--------------------------------------------------------------------		
     /** Called when the activity is first created. */
+	//--------------------------------------------------------------------
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +67,8 @@ public class SocketButtonActivity extends Activity implements DialogInterface.On
     }
     
 	//--------------------------------------------------------------------
+    /** Called after onRestoreInstanceState(Bundle), onRestart(), or onPause(),
+     *  for your activity to start interacting with the user.    */
 	//--------------------------------------------------------------------	
     @Override
     public void onResume() {   
@@ -89,6 +91,8 @@ public class SocketButtonActivity extends Activity implements DialogInterface.On
     }
     
 	//--------------------------------------------------------------------
+    /** Callback registered with each button in main.xml via android:onClick=""
+     *  This will be called whenever a button is pressed.  */
 	//--------------------------------------------------------------------
     public void buttonDispatch(View v) {   	
     	if (null==v) return;
@@ -97,6 +101,7 @@ public class SocketButtonActivity extends Activity implements DialogInterface.On
     }
     
 	//--------------------------------------------------------------------
+    /** Send a message over a socket connection. */
 	//--------------------------------------------------------------------
     public void sendMessage(String message) {
     	try {
@@ -114,15 +119,19 @@ public class SocketButtonActivity extends Activity implements DialogInterface.On
     }
     
 	//--------------------------------------------------------------------
+    /** Callback registered with Config... button in main.xml 
+     *  via android:onClick="" */
 	//--------------------------------------------------------------------
     public void configNetworkViaDialog(View v) {
-    	showDialog(CONFIG_DIALOG_ID);   	
+    	showDialog(CONFIG_DIALOG_ID);  // launch dialog for network config	
     }
     
 	//--------------------------------------------------------------------
+    /** Callback for creating dialogs. */
 	//--------------------------------------------------------------------	
     @Override
     protected Dialog onCreateDialog(int id) {
+    	super.onCreateDialog(id);
 
     	AlertDialog.Builder builder = new AlertDialog.Builder(this);
     	View view;
@@ -146,6 +155,7 @@ public class SocketButtonActivity extends Activity implements DialogInterface.On
     }    
     
 	//--------------------------------------------------------------------
+    /** Prepare dialogs before they are shown */
 	//--------------------------------------------------------------------	
     @Override
     protected void onPrepareDialog(int id, Dialog dialog) {    
@@ -172,6 +182,9 @@ public class SocketButtonActivity extends Activity implements DialogInterface.On
     }
 
 	//--------------------------------------------------------------------
+    /** Required implementation for DialogInterface.OnClickListener 
+     *  This method will be invoked when a button in the dialog is clicked. 
+     */
 	//--------------------------------------------------------------------
 	@Override
 	public void onClick(DialogInterface dialog, int whichButton) {
@@ -206,11 +219,14 @@ public class SocketButtonActivity extends Activity implements DialogInterface.On
 	}
 
 	//--------------------------------------------------------------------
+	/** Required implementation for OnLongClickListener
+	 *  Called when a view has been clicked and held.
+	 */
 	//--------------------------------------------------------------------
 	@Override
 	public boolean onLongClick(View v) {		
 		buttonPressed = (Button) v;
-		showDialog(MESSAGE_DIALOG_ID);		
+		showDialog(MESSAGE_DIALOG_ID);	// launch the dialog that gets the text string	 
 		return false;
 	}
 }
