@@ -109,6 +109,7 @@ public class SocketButtonActivity extends Activity implements DialogInterface.On
 			PrintWriter pw = new PrintWriter(s.getOutputStream(),true);
 			pw.write(message);
 			pw.close();
+			s.close();
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
