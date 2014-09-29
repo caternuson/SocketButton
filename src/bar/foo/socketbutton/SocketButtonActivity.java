@@ -225,7 +225,7 @@ public class SocketButtonActivity extends Activity implements DialogInterface.On
 	//--------------------------------------------------------------------
 	@Override
 	public boolean onLongClick(View v) {		
-		buttonPressed = (Button) v;
+		buttonPressed = (Button) v;     // which button was pressed?
 		showDialog(MESSAGE_DIALOG_ID);	// launch the dialog that gets the text string	 
 		return false;
 	}
